@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1080">
+<title>See the Child First</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F6F8F3;
+    --ink: #12312A;
+    --ink-soft: #3E5A52;
+    --accent: #177A3C;
+    --accent-bright: #5BD38A;
+    --tint: #DDF0E3;
+    --rule: #CFDCD3;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1350px; background: var(--bg); }
+  body {
+    position: relative;
+    overflow: hidden;
+    font-family: "Inter", system-ui, sans-serif;
+    color: var(--ink);
+  }
+  .circle {
+    position: absolute;
+    width: 760px; height: 760px;
+    right: -330px; top: -360px;
+    border-radius: 50%;
+    background: var(--tint);
+  }
+  .content { position: absolute; left: 88px; right: 88px; top: 96px; }
+  .label {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .tick { width: 72px; height: 6px; background: var(--accent); margin-top: 22px; }
+  h1 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 122px;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    margin-top: 120px;
+  }
+  h1 span { color: var(--accent); }
+  .sub {
+    font-size: 40px;
+    line-height: 1.38;
+    color: var(--ink-soft);
+    margin-top: 44px;
+    max-width: 840px;
+  }
+  .catch {
+    position: absolute; left: 88px; right: 88px; top: 790px;
+    border-top: 2px solid var(--rule);
+    padding-top: 36px;
+  }
+  .catch-label {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .icons { display: flex; justify-content: space-between; margin-top: 36px; }
+  .icon { width: 200px; display: flex; flex-direction: column; align-items: flex-start; }
+  .icon svg { width: 72px; height: 72px; stroke: var(--accent); stroke-width: 1.6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .icon p { font-family: "Montserrat", sans-serif; font-weight: 700; font-size: 34px; margin-top: 18px; }
+  .panel {
+    position: absolute; left: 0; right: 0; bottom: 0; height: 300px;
+    background: var(--ink);
+    color: #fff;
+    padding: 60px 88px 0;
+  }
+  .panel .tick { background: var(--accent-bright); margin-top: 0; width: 56px; height: 5px; }
+  .question {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 46px;
+    line-height: 1.22;
+    letter-spacing: -0.01em;
+    margin-top: 26px;
+    max-width: 880px;
+  }
+  .byline {
+    position: absolute; left: 88px; right: 88px; bottom: 40px;
+    display: flex; justify-content: space-between;
+    font-size: 24px; color: #CFE3D8;
+  }
+  .byline b { color: #fff; font-weight: 600; }
+  .byline .tag { color: var(--accent-bright); font-weight: 600; }
+</style>
+</head>
+<body>
+  <div class="circle"></div>
+
+  <div class="content">
+    <div class="label">World Cerebral Palsy Day · 6 October</div>
+    <div class="tick"></div>
+    <h1>See the child<br><span>first.</span></h1>
+    <p class="sub">Children with cerebral palsy are persons first, not a list of missed milestones.</p>
+  </div>
+
+  <div class="catch">
+    <div class="catch-label">Today, catch one thing your child can do</div>
+    <div class="icons">
+      <div class="icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        <p>A smile</p>
+      </div>
+      <div class="icon">
+        <svg viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+        <p>A glance</p>
+      </div>
+      <div class="icon">
+        <svg viewBox="0 0 24 24"><path d="M18 11V6a2 2 0 0 0-4 0"/><path d="M14 10V4a2 2 0 0 0-4 0v2"/><path d="M10 10.5V6a2 2 0 0 0-4 0v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>
+        <p>A reach</p>
+      </div>
+      <div class="icon">
+        <svg viewBox="0 0 24 24"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg>
+        <p>A sound</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="tick"></div>
+    <p class="question">What world are we building around our children?</p>
+    <div class="byline">
+      <span><b>Oluwatomisin Akindele</b> · Physiotherapist</span>
+      <span class="tag">#WorldCPDay</span>
+    </div>
+  </div>
+</body>
+</html>
