@@ -1,215 +1,140 @@
-# Little Wins Week: parent group chat pack
+# World CP Day: message pack for the unit group
 
-A week of short, fun activities for the parents' group, from World CP Day (Tuesday 6 October) to Sunday 11 October. Every message sits in a grey box, so you can copy it straight into WhatsApp. The `*stars*` and `_underscores_` turn into **bold** and _italics_ once you paste them.
+From: LASUTH Paediatric and Women's Health Physiotherapy Unit.
+Voice: the unit ("we"). No personal stories, no first-person "I".
+Copy each message from its grey box. In WhatsApp, `*stars*` turn into **bold** and `_underscores_` into _italics_.
 
-Post `flyers/little-wins-week.png` with the first message, then pin it.
-
-| Day | Activity | What parents do |
-|---|---|---|
-| Every day | Little win | Post one thing their child can do, starting with 🌟 |
-| Tue 6 Oct | Go green | Wear green and send a photo |
-| Wed 7 Oct | Myth or fact | Answer 10 quick questions and score themselves |
-| Thu 8 Oct | Three emojis | Describe their child in three emojis |
-| Fri 9 Oct | Friday jams | Share the song that lights their child up |
-| Sat 10 Oct | Parent's turn | Share one thing they did for themselves |
-| Sun 11 Oct | Wins wall | Repost their favourite win and shout out another parent |
+Before you post: show your Head of Unit the message and the flyer (`flyers/unit-greeting.png`). Part 2 is optional. Only send it if your Head of Unit agrees.
 
 ---
 
-## Tuesday 6 October (morning): World CP Day and Go Green
+## Part 1: Today's greeting (post this)
+
+Post `flyers/unit-greeting.png` first, then this message.
 
 ```
-*HAPPY WORLD CP DAY, FAMILY!* 💚
+*Happy World Cerebral Palsy Day!* 💚
 
-Today, people all over the world wear green for children and adults with cerebral palsy. Our group is joining them.
+On behalf of the Paediatric and Women's Health Physiotherapy Unit, LASUTH, we send warm wishes to every child living with cerebral palsy, to their parents and caregivers, and to our colleagues across the hospital.
 
-*Today's challenge: GO GREEN* 🟢
-Wear something green and send us a photo. A green shirt, green gele, green earrings or green socks all count.
+World CP Day is marked on 6 October. Today we remember three things:
 
-No green clothes? Hold up a green cup, a leaf or a plate of efo riro. Nobody is judging. 😄
+• Every child with cerebral palsy is a person first. They are more than a list of missed milestones.
+• Every child is different. Each one deserves goals that fit their own abilities, their family and their community.
+• Parents and caregivers are part of the care team. Your daily support, patience and observations make therapy work.
 
-Your child is welcome in the photo if you are happy to share. Faces are optional.
+We are proud to walk this journey with you.
 
-Today also starts our *Little Wins Week*. Each day until Sunday, I will post one small, fun activity here. The poster above shows the plan. 👆
+If you have a question about your child's therapy, please speak to your physiotherapist at your next visit.
 
-One thing runs every single day: catch one thing your child CAN do, and post it here. A smile. A glance. A reach. A sound. Start your post with 🌟 so we can all find them.
-
-Let us fill this chat with good news this week.
+With respect and appreciation,
+*Paediatric and Women's Health Physiotherapy Unit*
+*Lagos State University Teaching Hospital (LASUTH)* 💚
 ```
 
-## Tuesday 6 October (later): how to post a little win
-
-Send this an hour or two later, once the green photos start coming in.
+### Shorter version (for a status, a reply or a caption)
 
 ```
-Loving the green already! 💚💚💚
+*Happy World Cerebral Palsy Day!* 💚
 
-Quick guide for your 🌟 *little wins*. No win is too small. Here are some examples:
-
-🌟 Ayo laughed when he heard Daddy's car today.
-🌟 Tolu held her head up while I counted to 10.
-🌟 Kemi finished her whole plate of pap without coughing.
-🌟 Dami slept through the night. (Mummy also slept! 🙌)
-
-Wins are not only about sitting and walking. A new sound counts. A calm bath counts. A good day at school counts.
-
-Your turn. What did your child do today? 👇
+From the Paediatric and Women's Health Physiotherapy Unit, LASUTH: warm wishes to every child with cerebral palsy, to their parents and caregivers, and to our colleagues. Every child is a person first. We are proud to walk this journey with you.
 ```
 
-## Wednesday 7 October (morning): Myth or Fact
+---
+
+## Part 2 (optional): a short engagement week
+
+Only if your Head of Unit agrees. These are short, positive and educational. Each one is a single message from the unit.
+
+| Day | Message |
+|---|---|
+| Tue 6 Oct | Greeting (Part 1), plus an invitation to share one thing their child can do |
+| Wed 7 Oct | Myth or fact quiz, answers in the evening |
+| Thu 8 Oct | Therapy at home: one simple tip |
+| Fri 9 Oct | Thank-you to parents and caregivers |
+
+### Tuesday, a little later: share a little win
+
+```
+We would love to hear from you. 🌟
+
+Today, share *one thing your child can do*. It can be a smile, a look, a reach or a sound. Please start your message with 🌟.
+
+Every small achievement counts, and every one is worth celebrating.
+```
+
+### Wednesday morning: Myth or fact
 
 ```
 *MYTH OR FACT?* 🤔
-_Little Wins Week, Day 2_
 
-Ten quick questions. Reply with your answers like this: *1M 2F 3M...*
+Reply with your answers like this: *1M 2F 3M...*
 (M = Myth, F = Fact)
 
-No googling! 😄 I will post the answers this evening. The first parent to score 10/10 becomes our *CP Champion of the Week* 🏆
+1. Cerebral palsy is contagious.
+2. Cerebral palsy is caused by a curse, or by something the mother did wrong.
+3. The injury to the brain gets worse as the child grows.
+4. Every child with cerebral palsy has a learning difficulty.
+5. A child who cannot speak has nothing to say.
+6. Play can be part of therapy.
+7. There is a herb, drink or oil that cures cerebral palsy.
+8. Adults with cerebral palsy can study, work and raise families.
 
-1. CP is contagious. You can catch it.
-2. CP happens because of a curse, or because the mother did something wrong.
-3. Green is the colour of World CP Day.
-4. CP is the most common physical disability in childhood.
-5. The brain injury in CP gets worse as the child grows.
-6. Every child with CP has a learning disability.
-7. A child who cannot talk has nothing to say.
-8. Play counts as therapy.
-9. There is a herb, drink or special oil that cures CP.
-10. Adults with CP go to university, work and raise families.
-
-Ready, steady, GO! ⏱️
+Answers this evening.
 ```
 
-## Wednesday 7 October (evening): Myth or Fact answers
+### Wednesday evening: answers
 
 ```
-*MYTH OR FACT: THE ANSWERS* ✅
+*MYTH OR FACT: ANSWERS* ✅
 
-*1. Contagious? MYTH.*
-Nobody can catch CP. Hug freely, and let your child play with other children.
+*1. MYTH.* Cerebral palsy cannot be passed from one person to another.
 
-*2. A curse or the mother's fault? MYTH.*
-CP comes from an injury to the baby's brain, or a difference in how it grew. This happens before birth, during birth or soon after. Common causes include being born too early, lack of oxygen, infections and severe jaundice. It is not a curse. It is not your fault. 💚
+*2. MYTH.* Cerebral palsy comes from an injury to, or a difference in the development of, the baby's brain. This happens before, during or soon after birth. It is not a curse, and it is not the mother's fault.
 
-*3. Green for World CP Day? FACT.*
-That is why we went green yesterday! 🟢
+*3. MYTH.* The brain injury does not get worse. Muscles and joints can become tighter as a child grows, which is why regular therapy, stretching and good positioning matter.
 
-*4. Most common physical disability in childhood? FACT.*
-About 17 million people around the world live with CP. You are part of a very big family.
+*4. MYTH.* Many children with cerebral palsy learn at the same level as their peers. Some need extra support.
 
-*5. Gets worse with growth? MYTH.*
-The injury in the brain does not spread or get worse. Muscles and joints can get tighter as bones grow. That is why daily stretching, good positioning and movement matter so much.
+*5. MYTH.* Children communicate through their eyes, expressions, sounds, gestures and communication aids. Our role is to help them be understood.
 
-*6. Every child has a learning disability? MYTH.*
-Many children with CP learn at the same level as other children. A body that moves slowly can carry a quick, bright mind.
+*6. FACT.* Reaching for a toy, rolling over and playing with family all build strength, balance and thinking.
 
-*7. Cannot talk means nothing to say? MYTH.*
-Children talk with their eyes, smiles, sounds, hands, picture boards and devices. Our job is to learn their language.
+*7. MYTH.* There is no known cure. Please be careful with products or treatments that promise one. Speak to your physiotherapist or doctor first.
 
-*8. Play counts as therapy? FACT.*
-When your child reaches for a toy, rolls to see you or laughs at peekaboo, they build muscle, balance and thinking. Ask your physio for games that match your child's goals.
+*8. FACT.* Many adults with cerebral palsy complete their education, work and lead independent lives.
 
-*9. A herb, drink or oil that cures CP? MYTH.*
-There is no cure for CP yet. Be careful with anyone who sells one, especially for a lot of money. Therapy, the right equipment and steady support help children do more.
-
-*10. Adults with CP go to university, work and raise families? FACT.*
-They do. Some drive. Some fly planes. 🚗✈️
-
-How did you score? Tell us your number! 👇
-And a big round of applause for our *CP Champion of the Week*: @[name] 🏆👏
+Thank you to everyone who took part. 💚
 ```
 
-## Thursday 8 October: Three Emojis
+### Thursday: one tip for therapy at home
+
+Replace the tip below with whatever your unit teaches. This is only a general example.
 
 ```
-*THREE EMOJIS* 😄
-_Little Wins Week, Day 3_
+*THERAPY AT HOME: ONE SMALL TIP* 🏡
 
-Describe your child in three emojis. No words allowed!
+Therapy does not only happen in the clinic. Short, regular practice at home, built into daily routines such as bath time, play and feeding, helps your child more than one long session.
 
-I will go first. These are for the child I carried every morning when I was a boy:
-
-😊 👀 ✋
-
-The smile. The eyes that followed me everywhere. The little hand that reached for a toy.
-
-Your turn! 👇
+Ask your physiotherapist to show you the position or activity that suits *your child* best, and practise it together.
 ```
 
-## Friday 9 October: Friday Jams
+### Friday: thank you
 
 ```
-*FRIDAY JAMS* 🎶
-_Little Wins Week, Day 4_
+*THANK YOU, PARENTS AND CAREGIVERS* 💚
 
-Which song makes your child light up? 🎵
+You bring your children to therapy, practise at home, ask questions and never give up. We see it, and we are grateful.
 
-The one that makes them smile, kick, clap, rock or go still and listen. A worship song, an Afrobeats hit, a nursery rhyme or a cartoon theme tune all count.
+Your child is more than a diagnosis. You are more than a carer. Together, we are a community that sees.
 
-Drop the song title below. I will put every song into one *Little Wins playlist* and share the link on Sunday.
-
-Bonus points for a short video of the dance moves! 💃🕺
-```
-
-## Saturday 10 October: Parent's Turn
-
-```
-*PARENT'S TURN* ☕
-_Little Wins Week, Day 5_
-
-Today is not about the children. Today is about YOU.
-
-What is one thing you did for yourself this week?
-
-A nap counts. A plate of jollof you ate while it was still hot counts. Five quiet minutes with tea counts. A long call with a friend counts.
-
-If your answer is "nothing", say so. No shame here. This group will cheer you into one small thing tomorrow. 💪
-
-You carry a lot. You deserve care too. 💚
-```
-
-## Sunday 11 October: Wins Wall and Shout-outs
-
-```
-*WINS WALL* 🌟
-_Little Wins Week, Day 6 (final day!)_
-
-What a week, family! 🎉
-
-Two things today:
-
-*1.* Scroll back and repost your child's *best win* of the week. Let us see them all together.
-
-*2.* Shout out one parent whose post touched you this week. Tag them and tell them why. 🙌
-
-Here is our Little Wins playlist, as promised: [link] 🎶
-
-Thank you for showing up for each other. Your child is more than a diagnosis. You are more than a carer. Together, we are a community that sees. 💚
-
-Please keep the 🌟 wins coming after this week too.
+*Paediatric and Women's Health Physiotherapy Unit, LASUTH*
 ```
 
 ---
 
-## Group guidelines (pin these on Tuesday)
+## Notes
 
-```
-*Little Wins Week: a few gentle rules* 💚
-
-📸 Share only photos you are happy for the group to see. Please do not forward another family's photos outside this group.
-
-🚫 No comparing. Every child has their own road, and every win counts.
-
-🤗 Hard days are welcome too. If today was tough, tell us. Nobody has to post only good news.
-
-👏 When someone posts, react with at least one emoji. Nobody should post into silence.
-```
-
-## Notes for you as the group admin
-
-- Post each day's message at the same time each morning, around 8 a.m. Parents will start to look for it.
-- React to every 🌟 post yourself in the first few days. Others will follow your lead.
-- For the playlist, use whatever the group already listens on, such as YouTube or Boomplay.
-- Some parents prefer to read without posting. Thank them by name if they ever react, so they feel part of things.
-- If a parent shares something worrying (a new type of seizure, pain, or a parent in crisis), move that conversation to a private chat and help them reach the right care.
+- All clinical wording is general education. Please let your senior colleagues check the quiz answers and the home tip before posting.
+- Do not share a child's photo or details unless you have the family's consent. Please remind members of this in the group.
+- If you want a unit or hospital logo on the flyer, send it to me and I will add it. I have not used any logo, because I do not have the official one.

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1080">
+<title>Happy World Cerebral Palsy Day</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F6F8F3;
+    --ink: #12312A;
+    --ink-soft: #3E5A52;
+    --accent: #177A3C;
+    --accent-bright: #5BD38A;
+    --tint: #DDF0E3;
+    --rule: #CFDCD3;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1350px; background: var(--bg); }
+  body {
+    position: relative;
+    overflow: hidden;
+    font-family: "Inter", system-ui, sans-serif;
+    color: var(--ink);
+  }
+  .circle {
+    position: absolute;
+    width: 760px; height: 760px;
+    right: -330px; top: -360px;
+    border-radius: 50%;
+    background: var(--tint);
+  }
+  .content { position: absolute; left: 88px; right: 88px; top: 96px; }
+  .label {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .tick { width: 72px; height: 6px; background: var(--accent); margin-top: 22px; }
+  h1 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 112px;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    margin-top: 120px;
+  }
+  h1 span { color: var(--accent); }
+  .sub {
+    font-size: 40px;
+    line-height: 1.38;
+    color: var(--ink-soft);
+    margin-top: 44px;
+    max-width: 840px;
+  }
+  .catch {
+    position: absolute; left: 88px; right: 88px; top: 770px;
+    border-top: 2px solid var(--rule);
+    padding-top: 36px;
+  }
+  .catch-label {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .icons { display: flex; justify-content: space-between; margin-top: 36px; }
+  .icon { width: 270px; display: flex; flex-direction: column; align-items: flex-start; }
+  .icon svg { width: 72px; height: 72px; stroke: var(--accent); stroke-width: 1.6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .icon p { font-family: "Montserrat", sans-serif; font-weight: 700; font-size: 32px; margin-top: 18px; }
+  .panel {
+    position: absolute; left: 0; right: 0; bottom: 0; height: 300px;
+    background: var(--ink);
+    color: #fff;
+    padding: 60px 88px 0;
+  }
+  .panel .tick { background: var(--accent-bright); margin-top: 0; width: 56px; height: 5px; }
+  .question {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 1.22;
+    letter-spacing: -0.01em;
+    margin-top: 26px;
+    max-width: 940px;
+  }
+  .byline {
+    position: absolute; left: 88px; right: 88px; bottom: 40px;
+    display: flex; justify-content: space-between;
+    font-size: 22px; color: #CFE3D8;
+  }
+  .byline b { color: #fff; font-weight: 600; }
+  .byline .tag { color: var(--accent-bright); font-weight: 600; }
+</style>
+</head>
+<body>
+  <div class="circle"></div>
+
+  <div class="content">
+    <div class="label">World Cerebral Palsy Day · 6 October</div>
+    <div class="tick"></div>
+    <h1>Happy World<br>CP <span>Day.</span></h1>
+    <p class="sub">Warm wishes to every child with cerebral palsy, and to the parents and caregivers who stand beside them.</p>
+  </div>
+
+  <div class="catch">
+    <div class="catch-label">What we hold on to</div>
+    <div class="icons">
+      <div class="icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        <p>A person first</p>
+      </div>
+      <div class="icon">
+        <svg viewBox="0 0 24 24"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10Z"/></svg>
+        <p>Unique goals</p>
+      </div>
+      <div class="icon">
+        <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2 20c0-3.9 3.1-7 7-7s7 3.1 7 7"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7"/><path d="M18 13.3c2.4.8 4 3.1 4 5.7"/></svg>
+        <p>Family partners</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="tick"></div>
+    <p class="question">Together, we are a community that sees.</p>
+    <div class="byline">
+      <span><b>Paediatric and Women's Health Physiotherapy Unit</b> · LASUTH</span>
+      <span class="tag">#WorldCPDay</span>
+    </div>
+  </div>
+</body>
+</html>

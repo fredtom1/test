@@ -20,7 +20,7 @@ That child spoke to me all along. I had not yet learned to listen.
 
 Today, 6 October, is World Cerebral Palsy Day.
 
-I now work with children with cerebral palsy and their families. I also run a support group for their parents. I do not come to this as a visiting therapist who goes home at the end of the day. I carried, sweated, feared and hoped for years. I know the questions parents ask at night.
+I now work with children with cerebral palsy and their families. I do not come to this as a visiting therapist who goes home at the end of the day. I carried, sweated, feared and hoped for years. I know the questions parents ask at night.
 
 I still see the trap I once fell into. Our case notes list missed milestones and little else. Some schools see the diagnosis before they see the pupil. Some neighbours stare instead of saying hello.
 
@@ -38,7 +38,7 @@ That question belongs to all of us.
 → Faith leaders: does this family feel welcome at worship?
 → Employers and policymakers: will there be a place for the adult this child becomes?
 
-This week, I asked the parents in our group to try something with me. Each day, catch one thing your child can do. A smile. A glance. A reach. A sound.
+I often ask parents to try something with me. Each day, catch one thing your child can do. A smile. A glance. A reach. A sound.
 
 I am asking you the same.
 
@@ -49,12 +49,6 @@ To every parent reading this at 2 a.m.: your child is more than a diagnosis. You
 #WorldCPDay #CerebralPalsy #Physiotherapy #PaediatricPhysiotherapy #DisabilityInclusion
 
 ---
-
-## First comment (optional)
-
-Post this as the first comment straight after you publish. It brings parents to your group without cluttering the main post.
-
-> Parents and carers of children with cerebral palsy: our support group is open. Send me a message and I will add you. 💚
 
 ## Other opening lines, if you want a different hook
 
@@ -67,4 +61,4 @@ Only the first two lines show before "see more", so the opening carries the post
 
 - If you post after today, change "Today, 6 October, is World Cerebral Palsy Day" to "On 6 October, the world marked World Cerebral Palsy Day."
 - Reply to every comment in the first hour. LinkedIn shows the post to more people when the conversation starts early.
-- Tag one or two people only if they work in this space (for example, a colleague or a school you partner with).
+- This is your personal profile. If you mention LASUTH or the unit in the post, check with your Head of Unit first.
