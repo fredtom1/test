@@ -84,10 +84,19 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-server.listen(config.port, () => {
+// Bind to 0.0.0.0 so cloud hosts (Render/Railway) can route traffic in.
+server.listen(config.port, '0.0.0.0', () => {
   console.log(`\n${config.churchName} follow-up app running`);
   console.log(`  Check-in form : ${config.baseUrl}/checkin`);
   console.log(`  Dashboard     : ${config.baseUrl}/dashboard  (user: admin)`);
   console.log(`  Messaging     : ${isDryRun() ? 'DRY RUN (safe — nothing sent)' : 'LIVE'}`);
+  console.log(`  Scheduler     : ${config.runScheduler ? 'ON (sends due follow-ups every 24h)' : 'off'}`);
   console.log('');
 });
+
+// Optionally run the daily follow-up loop inside this same process, so one
+// free web service handles both the form and the automatic messages.
+if (config.runScheduler) {
+  const { runForever } = await import('./followup.js');
+  runForever();
+}

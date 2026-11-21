@@ -1,0 +1,33 @@
+# Render Blueprint — one free web service that runs the check-in form AND the
+# daily follow-up loop. Deploy by pointing Render at this repo (see README).
+services:
+  - type: web
+    name: church-followup
+    runtime: node
+    plan: free
+    rootDir: church-followup
+    buildCommand: "" # no build step — zero dependencies
+    startCommand: npm start
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: CHURCH_NAME
+        sync: false # you type your church's name during deploy
+      - key: ADMIN_PASSWORD
+        sync: false # you set the dashboard password during deploy
+      - key: DEFAULT_COUNTRY_CODE
+        value: "234"
+      - key: RUN_SCHEDULER
+        value: "true" # the web service also sends follow-ups every 24h
+      # --- Messaging: leave blank to stay in safe dry-run; fill in to go live ---
+      - key: MESSAGING_LIVE
+        value: "false"
+      - key: TWILIO_ACCOUNT_SID
+        sync: false
+      - key: TWILIO_AUTH_TOKEN
+        sync: false
+      - key: TWILIO_WHATSAPP_FROM
+        sync: false
+      - key: TWILIO_SMS_FROM
+        sync: false
+      # BASE_URL is detected automatically from Render's own URL — no need to set it.

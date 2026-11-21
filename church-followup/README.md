@@ -115,31 +115,35 @@ The app tries **WhatsApp first, then SMS** for each person automatically.
 
 ---
 
-## Running the follow-up automatically every day
+## Deploy it (free) — Render in ~5 minutes
 
-Pick one:
+This repo includes `render.yaml`, so Render sets everything up for you. **One free
+web service runs both the check-in form and the daily follow-up** (set
+`RUN_SCHEDULER=true`, which the blueprint already does) — no separate cron needed.
 
-- **Simplest:** keep a scheduler process running —
-  ```bash
-  node --no-warnings src/followup.js --forever
-  ```
-  (sends due messages immediately, then every 24 hours.)
-- **On a host:** add a daily **cron job** that runs `npm run followup` each evening.
+1. Push this repo to GitHub (already done if you're reading this there).
+2. Go to **https://render.com** → sign up (free) → **New → Blueprint**.
+3. Connect your GitHub and pick this repo. Render reads `church-followup/render.yaml`.
+4. When prompted, fill in:
+   - `CHURCH_NAME` — your church's name
+   - `ADMIN_PASSWORD` — a password for the staff dashboard
+   - (leave the Twilio values blank for now — it runs in safe dry-run mode)
+5. Click **Apply**. In a minute you get a public URL like
+   `https://church-followup.onrender.com`.
 
----
+That's it. The QR code on `/dashboard` automatically points at your real URL —
+**print it and you're live.** Follow-up messages will be *logged* (dry-run) until
+you add Twilio keys (see the WhatsApp section above), then redeploy with
+`MESSAGING_LIVE=true`.
 
-## Hosting it for free
+**Railway** works the same way (New Project → Deploy from GitHub → set the same env
+vars → it auto-detects the public domain).
 
-It's a standard Node app, so free tiers like **Render** or **Railway** work:
-
-- Start command: `npm start`
-- Add your `.env` values in the host's dashboard (don't commit `.env`).
-- Set `BASE_URL` to the URL the host gives you.
-- Add a daily scheduled job / cron that runs `npm run followup`.
-
-> One caveat on truly free tiers: some wipe local disk on redeploy. For <20
-> visitors/week that's usually fine, but if you want bulletproof storage later,
-> point `DB_PATH` at a persistent disk or move to a hosted database.
+> **Two caveats on free tiers (fine for a prototype, know them anyway):**
+> 1. Free services *sleep* after inactivity, so the first scan after a quiet spell
+>    takes a few seconds to wake. 2. Free disk is wiped on redeploy, so the visitor
+>    database resets when you push changes. For steady use later, add a small Render
+>    persistent disk (point `DB_PATH` at it) or move to a hosted database.
 
 ---
 

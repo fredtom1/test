@@ -31,8 +31,17 @@ export const config = {
   // The church's details (used in messages and on the form).
   churchName: process.env.CHURCH_NAME || 'Our Church',
   // The public base URL where this app is hosted, e.g. https://followup.ourchurch.org
-  // Used to build the QR-code link. Fine to leave as localhost while testing.
-  baseUrl: process.env.BASE_URL || `http://localhost:${process.env.PORT || 3000}`,
+  // Used to build the QR-code link. On Render/Railway this is detected
+  // automatically, so the QR code points at the real site with no manual step.
+  baseUrl:
+    process.env.BASE_URL ||
+    process.env.RENDER_EXTERNAL_URL ||
+    (process.env.RAILWAY_PUBLIC_DOMAIN ? `https://${process.env.RAILWAY_PUBLIC_DOMAIN}` : '') ||
+    `http://localhost:${process.env.PORT || 3000}`,
+
+  // If "true", the web process also runs the daily follow-up loop in-process,
+  // so a single free web service does everything (no separate cron needed).
+  runScheduler: String(process.env.RUN_SCHEDULER || 'false').toLowerCase() === 'true',
 
   // Password for the staff dashboard (Basic Auth username is "admin").
   adminPassword: process.env.ADMIN_PASSWORD || 'changeme',
