@@ -10,6 +10,8 @@ import http from 'node:http';
 import { config, isDryRun } from './config.js';
 import { checkIn, listPeople, stats } from './db.js';
 import { checkInForm, thankYou, dashboard } from './views.js';
+import { sendStep } from './followup.js';
+import { followUpPlan } from './followup-plan.js';
 
 function send(res, status, body, headers = {}) {
   res.writeHead(status, { 'Content-Type': 'text/html; charset=utf-8', ...headers });
@@ -64,6 +66,17 @@ const server = http.createServer(async (req, res) => {
         howHeard: form.howHeard,
         service: form.service,
       });
+      // First-time visitor: fire the warm "thank you" (day0) right away, in the
+      // background, so they get it within moments instead of waiting for the
+      // nightly run. It's logged as day0, so the scheduler won't repeat it.
+      if (!result.isReturning) {
+        const day0 = followUpPlan.find((s) => s.step === 'day0');
+        if (day0) {
+          sendStep(result.person, day0).catch((err) =>
+            console.error('instant day0 send failed:', err.message)
+          );
+        }
+      }
       return send(res, 200, thankYou(result));
     }
 

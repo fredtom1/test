@@ -10,6 +10,26 @@ import { peopleDueForStep, hasMessage, logMessage } from './db.js';
 import { followUpPlan, renderBody } from './followup-plan.js';
 import { sendFollowUp } from './messaging.js';
 
+// Send a single follow-up step to one person (used by both the scheduler and
+// the instant "thank you" on check-in). Safe to call twice — it won't resend a
+// step the person already received.
+export async function sendStep(person, step) {
+  if (hasMessage(person.id, step.step)) return null;
+  const body = renderBody(step.body, person, config.churchName);
+  const result = await sendFollowUp(person, body);
+  logMessage({
+    personId: person.id,
+    step: step.step,
+    channel: result.channel,
+    status: result.status,
+    providerId: result.providerId,
+    error: result.error,
+    body,
+  });
+  console.log(`  ${step.step} -> ${person.name} (${person.phone || person.email || 'no contact'}): ${result.status}`);
+  return result;
+}
+
 export async function runOnce() {
   const mode = isDryRun() ? 'DRY RUN (no real messages)' : 'LIVE';
   console.log(`\n=== Follow-up run @ ${new Date().toISOString()} — ${mode} ===`);
@@ -18,20 +38,8 @@ export async function runOnce() {
   for (const step of followUpPlan) {
     const due = peopleDueForStep(step.step, step.daysAfter);
     for (const person of due) {
-      if (hasMessage(person.id, step.step)) continue; // safety double-check
-      const body = renderBody(step.body, person, config.churchName);
-      const result = await sendFollowUp(person, body);
-      logMessage({
-        personId: person.id,
-        step: step.step,
-        channel: result.channel,
-        status: result.status,
-        providerId: result.providerId,
-        error: result.error,
-        body,
-      });
-      processed++;
-      console.log(`  ${step.step} -> ${person.name} (${person.phone || person.email || 'no contact'}): ${result.status}`);
+      const result = await sendStep(person, step);
+      if (result) processed++;
     }
   }
 
