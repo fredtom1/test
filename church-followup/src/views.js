@@ -38,6 +38,9 @@ function page(title, body, { narrow = true } = {}) {
   .pill { display:inline-block; padding:2px 9px; border-radius:999px; font-size:12px; font-weight:700; }
   .pill.new { background:#23305c; color:#9db4ff; }
   .pill.ret { background:#163a2c; color:var(--ok); }
+  .pill.ok-msg { background:#163a2c; color:var(--ok); }
+  .pill.bad-msg { background:#4a1f26; color:#ff8f8f; }
+  .pill.muted-msg { background:#2a2f45; color:var(--muted); }
   a { color:var(--brand); }
   .footer { text-align:center; color:var(--muted); margin-top:24px; font-size:13px; }
 </style>
@@ -92,17 +95,36 @@ export function thankYou({ person, isReturning, visitNumber }) {
          </div>`);
 }
 
-export function dashboard({ stats, people, baseUrl, dryRun }) {
+function msgBadge(status, error) {
+  if (status === 'sent' || status === 'dryrun')
+    return `<span class="pill ok-msg">✅ ${status === 'dryrun' ? 'logged' : 'sent'}</span>`;
+  if (status === 'failed')
+    return `<span class="pill bad-msg" title="${esc(error || '')}">❌ failed</span>`;
+  if (status === 'skipped')
+    return `<span class="pill muted-msg" title="${esc(error || '')}">— skipped</span>`;
+  return `<span class="muted" style="font-size:12px">none yet</span>`;
+}
+
+export function dashboard({ stats, people, recentMessages = [], baseUrl, dryRun }) {
   const rows = people.map((p) => {
     const ret = p.visit_count > 1;
     return `<tr>
       <td>${esc(p.name)}<div class="muted" style="font-size:12px">${esc(p.phone || p.email || '')}</div></td>
       <td><span class="pill ${ret ? 'ret' : 'new'}">${ret ? 'Returning ×' + p.visit_count : 'First time'}</span></td>
       <td>${esc((p.last_visit || p.created_at || '').slice(0, 10))}</td>
-      <td>${p.messages_sent}</td>
+      <td>${msgBadge(p.last_msg_status, p.last_msg_error)}</td>
       <td class="muted">${esc(p.how_heard || '')}</td>
     </tr>`;
   }).join('');
+
+  const msgRows = recentMessages.map((m) => `
+    <tr>
+      <td>${esc(m.person_name)}<div class="muted" style="font-size:12px">${esc(m.person_phone || '')}</div></td>
+      <td class="muted">${esc(m.step)}</td>
+      <td>${msgBadge(m.status, m.error)}</td>
+      <td class="muted" style="font-size:12px">${esc(m.error || (m.status === 'sent' ? 'delivered to provider' : ''))}</td>
+      <td class="muted" style="font-size:12px">${esc((m.sent_at || '').slice(0, 16).replace('T', ' '))}</td>
+    </tr>`).join('');
 
   const checkinUrl = `${baseUrl}/checkin`;
   const qr = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(checkinUrl)}`;
@@ -117,8 +139,14 @@ export function dashboard({ stats, people, baseUrl, dryRun }) {
     <div class="stat"><div class="n">${stats.total}</div><div class="muted">People</div></div>
     <div class="stat"><div class="n">${stats.returners}</div><div class="muted">Returned ≥2×</div></div>
     <div class="stat"><div class="n">${stats.visitsThisWeek}</div><div class="muted">Visits this week</div></div>
-    <div class="stat"><div class="n">${stats.messagesSent}</div><div class="muted">Messages</div></div>
+    <div class="stat"><div class="n">${stats.messagesSent}</div><div class="muted">Sent ✅</div></div>
+    <div class="stat"><div class="n" style="${stats.messagesFailed ? 'color:#ff8f8f' : ''}">${stats.messagesFailed}</div><div class="muted">Failed ❌</div></div>
   </div>
+
+  ${stats.messagesFailed ? `<div class="card" style="border-color:#5a2a2a;background:#2a1a1f">
+    <strong style="color:#ff8f8f">Some messages failed to send.</strong>
+    <p class="muted" style="margin:.4rem 0 0">See the reason in the <em>Recent follow-up messages</em> table below. The most common cause with the Twilio WhatsApp sandbox is that the recipient's phone hasn't sent the <code>join</code> code yet.</p>
+  </div>` : ''}
 
   <div class="card">
     <h2>Check-in QR code</h2>
@@ -130,8 +158,17 @@ export function dashboard({ stats, people, baseUrl, dryRun }) {
   <div class="card">
     <h2>Visitors</h2>
     <table>
-      <thead><tr><th>Name</th><th>Status</th><th>Last visit</th><th>Msgs</th><th>Heard via</th></tr></thead>
+      <thead><tr><th>Name</th><th>Status</th><th>Last visit</th><th>Follow-up</th><th>Heard via</th></tr></thead>
       <tbody>${rows || '<tr><td colspan="5" class="muted">No check-ins yet.</td></tr>'}</tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Recent follow-up messages</h2>
+    <p class="muted" style="margin-top:0">Every send attempt, newest first — including failures and why they failed.</p>
+    <table>
+      <thead><tr><th>To</th><th>Step</th><th>Result</th><th>Detail / error</th><th>When</th></tr></thead>
+      <tbody>${msgRows || '<tr><td colspan="5" class="muted">No messages attempted yet.</td></tr>'}</tbody>
     </table>
   </div>`, { narrow: false });
 }

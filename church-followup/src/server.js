@@ -8,7 +8,7 @@
 
 import http from 'node:http';
 import { config, isDryRun } from './config.js';
-import { checkIn, listPeople, stats } from './db.js';
+import { checkIn, listPeople, stats, listRecentMessages } from './db.js';
 import { checkInForm, thankYou, dashboard } from './views.js';
 import { sendStep } from './followup.js';
 import { followUpPlan } from './followup-plan.js';
@@ -85,6 +85,7 @@ const server = http.createServer(async (req, res) => {
       return send(res, 200, dashboard({
         stats: stats(),
         people: listPeople(),
+        recentMessages: listRecentMessages(),
         baseUrl: config.baseUrl,
         dryRun: isDryRun(),
       }));

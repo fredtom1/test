@@ -113,10 +113,22 @@ export function listPeople() {
     SELECT p.*,
            (SELECT COUNT(*) FROM visits v WHERE v.person_id = p.id) AS visit_count,
            (SELECT MAX(visited_at) FROM visits v WHERE v.person_id = p.id) AS last_visit,
-           (SELECT COUNT(*) FROM messages m WHERE m.person_id = p.id AND m.status IN ('sent','dryrun')) AS messages_sent
+           (SELECT COUNT(*) FROM messages m WHERE m.person_id = p.id AND m.status IN ('sent','dryrun')) AS messages_sent,
+           (SELECT status FROM messages m WHERE m.person_id = p.id ORDER BY m.sent_at DESC LIMIT 1) AS last_msg_status,
+           (SELECT error  FROM messages m WHERE m.person_id = p.id ORDER BY m.sent_at DESC LIMIT 1) AS last_msg_error
     FROM people p
     ORDER BY p.created_at DESC
   `).all();
+}
+
+// Most recent follow-up messages (any status), newest first, for the dashboard.
+export function listRecentMessages(limit = 30) {
+  return db.prepare(`
+    SELECT m.step, m.channel, m.status, m.error, m.sent_at, p.name AS person_name, p.phone AS person_phone
+    FROM messages m JOIN people p ON p.id = m.person_id
+    ORDER BY m.sent_at DESC
+    LIMIT ?
+  `).all(limit);
 }
 
 export function stats() {
@@ -133,7 +145,10 @@ export function stats() {
   const messagesSent = db.prepare(
     "SELECT COUNT(*) AS c FROM messages WHERE status IN ('sent','dryrun')"
   ).get().c;
-  return { total, returners, visitsThisWeek, messagesSent };
+  const messagesFailed = db.prepare(
+    "SELECT COUNT(*) AS c FROM messages WHERE status = 'failed'"
+  ).get().c;
+  return { total, returners, visitsThisWeek, messagesSent, messagesFailed };
 }
 
 // Has a given follow-up step already been attempted for this person?
