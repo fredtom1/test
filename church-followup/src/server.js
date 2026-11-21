@@ -1,0 +1,93 @@
+// The web server — zero dependencies, Node's built-in http.
+// Routes:
+//   GET  /            -> redirect to /checkin
+//   GET  /checkin     -> public mobile check-in form (QR code points here)
+//   POST /checkin     -> record visit, detect returning visitors, say thanks
+//   GET  /dashboard   -> staff view (Basic Auth: user "admin", password = ADMIN_PASSWORD)
+//   GET  /healthz     -> uptime check for hosting
+
+import http from 'node:http';
+import { config, isDryRun } from './config.js';
+import { checkIn, listPeople, stats } from './db.js';
+import { checkInForm, thankYou, dashboard } from './views.js';
+
+function send(res, status, body, headers = {}) {
+  res.writeHead(status, { 'Content-Type': 'text/html; charset=utf-8', ...headers });
+  res.end(body);
+}
+
+function parseForm(req) {
+  return new Promise((resolve) => {
+    let data = '';
+    req.on('data', (c) => {
+      data += c;
+      if (data.length > 1e6) req.destroy(); // guard
+    });
+    req.on('end', () => resolve(Object.fromEntries(new URLSearchParams(data))));
+  });
+}
+
+function requireAuth(req, res) {
+  const header = req.headers.authorization || '';
+  const expected = 'Basic ' + Buffer.from(`admin:${config.adminPassword}`).toString('base64');
+  if (header === expected) return true;
+  res.writeHead(401, { 'WWW-Authenticate': 'Basic realm="Staff"' });
+  res.end('Authentication required.');
+  return false;
+}
+
+const server = http.createServer(async (req, res) => {
+  const url = new URL(req.url, config.baseUrl);
+  const path = url.pathname;
+
+  try {
+    if (path === '/' ) {
+      res.writeHead(302, { Location: '/checkin' });
+      return res.end();
+    }
+
+    if (path === '/healthz') return send(res, 200, 'ok');
+
+    if (path === '/checkin' && req.method === 'GET') {
+      return send(res, 200, checkInForm({ service: url.searchParams.get('service') || '' }));
+    }
+
+    if (path === '/checkin' && req.method === 'POST') {
+      const form = await parseForm(req);
+      if (!form.name || !form.phone) {
+        return send(res, 400, checkInForm({ service: form.service, error: 'Please enter your name and phone number.' }));
+      }
+      const result = checkIn({
+        name: form.name,
+        phone: form.phone,
+        email: form.email,
+        howHeard: form.howHeard,
+        service: form.service,
+      });
+      return send(res, 200, thankYou(result));
+    }
+
+    if (path === '/dashboard' && req.method === 'GET') {
+      if (!requireAuth(req, res)) return;
+      return send(res, 200, dashboard({
+        stats: stats(),
+        people: listPeople(),
+        baseUrl: config.baseUrl,
+        dryRun: isDryRun(),
+      }));
+    }
+
+    return send(res, 404, '<p>Not found. Try <a href="/checkin">/checkin</a>.</p>');
+  } catch (err) {
+    console.error(err);
+    return send(res, 500, '<p>Something went wrong. Please try again.</p>');
+  }
+});
+
+server.listen(config.port, () => {
+  console.log(`\n${config.churchName} follow-up app running`);
+  console.log(`  Check-in form : ${config.baseUrl}/checkin`);
+  console.log(`  Dashboard     : ${config.baseUrl}/dashboard  (user: admin)`);
+  console.log(`  Messaging     : ${isDryRun() ? 'DRY RUN (safe — nothing sent)' : 'LIVE'}`);
+  console.log('');
+});

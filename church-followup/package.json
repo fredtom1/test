@@ -1,0 +1,15 @@
+{
+  "name": "church-followup",
+  "version": "1.0.0",
+  "description": "Automatic first-time visitor follow-up for churches (check-in form, visitor database, WhatsApp/SMS/email follow-up, returning-visitor detection).",
+  "type": "module",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "start": "node --no-warnings src/server.js",
+    "followup": "node --no-warnings src/followup.js",
+    "seed": "node --no-warnings src/seed.js"
+  },
+  "dependencies": {}
+}
