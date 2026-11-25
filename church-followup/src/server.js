@@ -63,7 +63,15 @@ const server = http.createServer(async (req, res) => {
         name: form.name,
         phone: form.phone,
         email: form.email,
-        howHeard: form.howHeard,
+        address: form.address,
+        ageRange: form.ageRange,
+        gender: form.gender,
+        maritalStatus: form.maritalStatus,
+        occupation: form.occupation,
+        willingMember: form.willingMember,
+        canVisit: form.canVisit,
+        enjoyedService: form.enjoyedService,
+        prayerRequests: form.prayerRequests,
         service: form.service,
       });
       // First-time visitor: fire the warm "thank you" (day0) right away, in the

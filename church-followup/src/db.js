@@ -12,14 +12,23 @@ const db = new DatabaseSync(config.dbPath);
 
 db.exec(`
   CREATE TABLE IF NOT EXISTS people (
-    id         INTEGER PRIMARY KEY AUTOINCREMENT,
-    name       TEXT NOT NULL,
-    phone      TEXT UNIQUE,              -- normalized E.164, e.g. +2348012345678
-    email      TEXT,
-    how_heard  TEXT,
-    notes      TEXT,
-    created_at TEXT NOT NULL,            -- first visit (ISO)
-    opted_out  INTEGER NOT NULL DEFAULT 0
+    id              INTEGER PRIMARY KEY AUTOINCREMENT,
+    name            TEXT NOT NULL,
+    phone           TEXT UNIQUE,         -- normalized E.164, e.g. +2348012345678
+    email           TEXT,
+    address         TEXT,
+    age_range       TEXT,                -- "10-20" | "21-30" | "31-40" | "41+"
+    gender          TEXT,                -- "Male" | "Female"
+    marital_status  TEXT,                -- "Single" | "Married"
+    occupation      TEXT,
+    willing_member  TEXT,                -- "Yes" | "No"
+    can_visit       TEXT,                -- "Yes" | "No"
+    enjoyed_service TEXT,                -- "Yes" | "No"
+    prayer_requests TEXT,                -- free text (the 3 lines joined)
+    how_heard       TEXT,
+    notes           TEXT,
+    created_at      TEXT NOT NULL,       -- first visit (ISO)
+    opted_out       INTEGER NOT NULL DEFAULT 0
   );
 
   CREATE TABLE IF NOT EXISTS visits (
@@ -45,6 +54,19 @@ db.exec(`
   CREATE INDEX IF NOT EXISTS idx_messages_person_step ON messages(person_id, step);
 `);
 
+// Migration: add any First-Timer's-Card columns missing from an older database.
+{
+  const existing = new Set(db.prepare('PRAGMA table_info(people)').all().map((c) => c.name));
+  const wanted = {
+    address: 'TEXT', age_range: 'TEXT', gender: 'TEXT', marital_status: 'TEXT',
+    occupation: 'TEXT', willing_member: 'TEXT', can_visit: 'TEXT',
+    enjoyed_service: 'TEXT', prayer_requests: 'TEXT',
+  };
+  for (const [col, type] of Object.entries(wanted)) {
+    if (!existing.has(col)) db.exec(`ALTER TABLE people ADD COLUMN ${col} ${type}`);
+  }
+}
+
 // ---- Phone normalization (Nigeria-friendly, works generally) ----
 export function normalizePhone(raw, countryCode = config.defaultCountryCode) {
   if (!raw) return null;
@@ -65,7 +87,11 @@ const nowIso = () => new Date().toISOString();
 // ---- Core operations ----
 
 // Record a check-in. Returns { person, isReturning, visitNumber }.
-export function checkIn({ name, phone, email, howHeard, service, notes }) {
+export function checkIn(d = {}) {
+  const {
+    name, phone, email, address, ageRange, gender, maritalStatus, occupation,
+    willingMember, canVisit, enjoyedService, prayerRequests, howHeard, service, notes,
+  } = d;
   const normPhone = normalizePhone(phone);
   const now = nowIso();
 
@@ -77,19 +103,37 @@ export function checkIn({ name, phone, email, howHeard, service, notes }) {
 
   if (!person) {
     const info = db.prepare(
-      `INSERT INTO people (name, phone, email, how_heard, notes, created_at)
-       VALUES (?, ?, ?, ?, ?, ?)`
-    ).run(name, normPhone, email || null, howHeard || null, notes || null, now);
+      `INSERT INTO people
+         (name, phone, email, address, age_range, gender, marital_status, occupation,
+          willing_member, can_visit, enjoyed_service, prayer_requests, how_heard, notes, created_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+    ).run(
+      name, normPhone, email || null, address || null, ageRange || null, gender || null,
+      maritalStatus || null, occupation || null, willingMember || null, canVisit || null,
+      enjoyedService || null, prayerRequests || null, howHeard || null, notes || null, now
+    );
     person = db.prepare('SELECT * FROM people WHERE id = ?').get(info.lastInsertRowid);
   } else {
-    // Light update: fill any gaps without overwriting good data.
+    // Returning visitor: fill gaps and refresh the service-specific answers.
     db.prepare(
       `UPDATE people SET
          name = COALESCE(NULLIF(?, ''), name),
          email = COALESCE(NULLIF(?, ''), email),
-         how_heard = COALESCE(how_heard, ?)
+         address = COALESCE(NULLIF(?, ''), address),
+         age_range = COALESCE(NULLIF(?, ''), age_range),
+         gender = COALESCE(NULLIF(?, ''), gender),
+         marital_status = COALESCE(NULLIF(?, ''), marital_status),
+         occupation = COALESCE(NULLIF(?, ''), occupation),
+         willing_member = COALESCE(NULLIF(?, ''), willing_member),
+         can_visit = COALESCE(NULLIF(?, ''), can_visit),
+         enjoyed_service = COALESCE(NULLIF(?, ''), enjoyed_service),
+         prayer_requests = COALESCE(NULLIF(?, ''), prayer_requests)
        WHERE id = ?`
-    ).run(name || '', email || '', howHeard || null, person.id);
+    ).run(
+      name || '', email || '', address || '', ageRange || '', gender || '',
+      maritalStatus || '', occupation || '', willingMember || '', canVisit || '',
+      enjoyedService || '', prayerRequests || '', person.id
+    );
     person = db.prepare('SELECT * FROM people WHERE id = ?').get(person.id);
   }
 

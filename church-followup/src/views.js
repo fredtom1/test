@@ -58,23 +58,75 @@ export function checkInForm({ service = '', error = '' } = {}) {
     ${error ? `<p style="color:var(--warn)">${esc(error)}</p>` : ''}
     <form method="POST" action="/checkin">
       <input type="hidden" name="service" value="${esc(service)}">
-      <label>Your name</label>
-      <input name="name" required placeholder="Jane Doe" autocomplete="name">
+
+      <label>Name</label>
+      <input name="name" required placeholder="Full name" autocomplete="name">
+
+      <label>Age</label>
+      <select name="ageRange">
+        <option value="">Select…</option>
+        <option>10-20</option>
+        <option>21-30</option>
+        <option>31-40</option>
+        <option>41+</option>
+      </select>
+
       <label>Phone number</label>
       <input name="phone" required placeholder="0801 234 5678" inputmode="tel" autocomplete="tel">
+
       <label>Email <span class="muted">(optional)</span></label>
-      <input name="email" type="email" placeholder="jane@email.com" autocomplete="email">
-      <label>How did you hear about us? <span class="muted">(optional)</span></label>
-      <select name="howHeard">
+      <input name="email" type="email" placeholder="name@email.com" autocomplete="email">
+
+      <label>Address <span class="muted">(optional)</span></label>
+      <input name="address" placeholder="Where do you stay?" autocomplete="street-address">
+
+      <label>Occupation <span class="muted">(optional)</span></label>
+      <input name="occupation" placeholder="What do you do?">
+
+      <label>Gender</label>
+      <select name="gender">
         <option value="">Select…</option>
-        <option>A friend or family member</option>
-        <option>Social media</option>
-        <option>Walked / drove past</option>
-        <option>Online search</option>
-        <option>An event or outreach</option>
-        <option>Other</option>
+        <option>Male</option>
+        <option>Female</option>
       </select>
-      <button type="submit">I'm here 🎉</button>
+
+      <label>Marital status</label>
+      <select name="maritalStatus">
+        <option value="">Select…</option>
+        <option>Single</option>
+        <option>Married</option>
+      </select>
+
+      <label>Are you willing to be a member of this church?</label>
+      <select name="willingMember">
+        <option value="">Select…</option>
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+
+      <label>Can we visit you?</label>
+      <select name="canVisit">
+        <option value="">Select…</option>
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+
+      <label>Did you enjoy the service?</label>
+      <select name="enjoyedService">
+        <option value="">Select…</option>
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+
+      <label>Prayer requests <span class="muted">(one per line)</span></label>
+      <textarea name="prayerRequests" rows="3" placeholder="1) New job&#10;2) New house&#10;3) …"></textarea>
+
+      <p class="muted" style="font-size:12px;margin-top:16px">
+        By filling this form, you consent that ${esc(config.churchName)} may reach you via the
+        personal data provided and may use the said data for ecclesiastical purposes.
+      </p>
+
+      <button type="submit">Submit 🙏</button>
     </form>
   </div>`);
 }
@@ -108,12 +160,23 @@ function msgBadge(status, error) {
 export function dashboard({ stats, people, recentMessages = [], baseUrl, dryRun }) {
   const rows = people.map((p) => {
     const ret = p.visit_count > 1;
+    const bio = [p.gender, p.age_range, p.marital_status].filter(Boolean).join(' · ');
+    const yn = (v) => (v === 'Yes' ? '✅' : v === 'No' ? '❌' : '—');
+    const prayer = (p.prayer_requests || '').trim();
     return `<tr>
-      <td>${esc(p.name)}<div class="muted" style="font-size:12px">${esc(p.phone || p.email || '')}</div></td>
+      <td>${esc(p.name)}
+        <div class="muted" style="font-size:12px">${esc(p.phone || '')}${p.email ? ' · ' + esc(p.email) : ''}</div>
+        ${bio ? `<div class="muted" style="font-size:12px">${esc(bio)}</div>` : ''}
+        ${p.occupation ? `<div class="muted" style="font-size:12px">${esc(p.occupation)}</div>` : ''}
+        ${p.address ? `<div class="muted" style="font-size:12px">🏠 ${esc(p.address)}</div>` : ''}
+      </td>
       <td><span class="pill ${ret ? 'ret' : 'new'}">${ret ? 'Returning ×' + p.visit_count : 'First time'}</span></td>
       <td>${esc((p.last_visit || p.created_at || '').slice(0, 10))}</td>
       <td>${msgBadge(p.last_msg_status, p.last_msg_error)}</td>
-      <td class="muted">${esc(p.how_heard || '')}</td>
+      <td class="muted" style="font-size:12px">
+        Member: ${yn(p.willing_member)} · Visit: ${yn(p.can_visit)} · Enjoyed: ${yn(p.enjoyed_service)}
+        ${prayer ? `<div style="margin-top:4px">🙏 ${esc(prayer).replaceAll('\n', '<br>')}</div>` : ''}
+      </td>
     </tr>`;
   }).join('');
 
@@ -158,7 +221,7 @@ export function dashboard({ stats, people, recentMessages = [], baseUrl, dryRun 
   <div class="card">
     <h2>Visitors</h2>
     <table>
-      <thead><tr><th>Name</th><th>Status</th><th>Last visit</th><th>Follow-up</th><th>Heard via</th></tr></thead>
+      <thead><tr><th>Name &amp; details</th><th>Status</th><th>Last visit</th><th>Follow-up</th><th>Answers &amp; prayer</th></tr></thead>
       <tbody>${rows || '<tr><td colspan="5" class="muted">No check-ins yet.</td></tr>'}</tbody>
     </table>
   </div>
